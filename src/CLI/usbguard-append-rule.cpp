@@ -24,6 +24,7 @@
 #include "usbguard-append-rule.hpp"
 
 #include "usbguard/IPCClient.hpp"
+#include "usbguard/RuleCompiler.hpp"
 
 #include <iostream>
 
@@ -39,6 +40,8 @@ namespace usbguard
   static void showHelp(std::ostream& stream)
   {
     stream << " Usage: " << usbguard_arg0 << " append-rule [OPTIONS] <rule>" << std::endl;
+    stream << "        The rule may use device-type as shorthand for with-interface:" << std::endl;
+    stream << "        allow device-type one-of { keyboard mouse } serial \"SN-123\"" << std::endl;
     stream << std::endl;
     stream << " Options:" << std::endl;
     stream << "  -a, --after <id>  Append the new rule after a rule with the specified id" << std::endl;
@@ -86,8 +89,7 @@ namespace usbguard
     }
 
     usbguard::IPCClient ipc(/*connected=*/true);
-    const std::string rule_spec = argv[0];
-    const uint32_t id = ipc.appendRule(rule_spec, parent_id, permanent);
+    const uint32_t id = ipc.appendCompiledRule(argv[0], parent_id, permanent);
     std::cout << id << std::endl;
     return EXIT_SUCCESS;
   }

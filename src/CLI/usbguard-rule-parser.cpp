@@ -22,6 +22,7 @@
 
 #include "usbguard/Exception.hpp"
 #include "usbguard/Rule.hpp"
+#include "usbguard/RuleCompiler.hpp"
 #include "usbguard/RuleParser.hpp"
 
 #ifdef HAVE_GNU_BASENAME
@@ -54,6 +55,7 @@ static void showHelp(std::ostream& stream, const char* usbguard_arg0)
   char* const writeable_arg0 = ::strdup(usbguard_arg0);
   stream << " Usage: " << ::basename(writeable_arg0) << " [OPTIONS] <rule_spec>" << std::endl;
   stream << " Usage: " << ::basename(writeable_arg0) << " [OPTIONS] -f <file>" << std::endl;
+  stream << "        <rule_spec> may use device-type as shorthand for with-interface." << std::endl;
   stream << std::endl;
   stream << " Options:" << std::endl;
   stream << "  -f, --file       Interpret the argument as a path to a file that should be parsed." << std::endl;
@@ -123,7 +125,7 @@ int main(int argc, char** argv)
         }
 
         std::cout << "INPUT: " << rule_spec << std::endl;
-        const usbguard::Rule rule = usbguard::parseRuleFromString(rule_spec, rule_file, line, trace);
+        const usbguard::Rule rule = usbguard::RuleCompiler::compile(rule_spec, rule_file, line, trace);
         std::cout << "OUTPUT: " << rule.toString() << std::endl;
       }
 
@@ -132,7 +134,7 @@ int main(int argc, char** argv)
     else {
       rule_spec = argv[0];
       std::cout << "INPUT: " << rule_spec << std::endl;
-      const usbguard::Rule rule = usbguard::parseRuleFromString(rule_spec, "<argv>", 0, trace);
+      const usbguard::Rule rule = usbguard::RuleCompiler::compile(rule_spec, "<argv>", 0, trace);
       std::cout << "OUTPUT: " << rule.toString() << std::endl;
       return EXIT_SUCCESS;
     }

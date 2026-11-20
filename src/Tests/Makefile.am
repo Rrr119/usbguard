@@ -118,6 +118,8 @@ test_unit_SOURCES=\
 	main.cpp \
 	Unit/test_Rule.cpp \
 	Unit/test_RuleParser.cpp \
+	Unit/test_RuleCompiler.cpp \
+	Unit/test_DeviceFingerprint.cpp \
 	Unit/test_Base64.cpp \
 	Unit/test_UEvent.cpp \
 	Unit/test_UEventParser.cpp \

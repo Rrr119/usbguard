@@ -153,6 +153,10 @@ Available options:
 
 === *append-rule* ['OPTIONS'] 'rule'
 Append the 'rule' to the current rule set.
+The rule may use the `device-type` authoring attribute, which is compiled to
+the standard `with-interface` attribute before it is sent to the daemon.
+Multiple device types can be specified with a set operator, for example
+`allow device-type one-of { keyboard mouse } serial "SN-123"`.
 
 Available options:
 

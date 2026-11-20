@@ -1,0 +1,17 @@
+{
+  "root": "/home/dev/feedback/uid31122",
+  "B": "/home/dev/feedback/uid31122",
+  "sha": "ba3e8f51eeaf9547a6af088d93133351bbf0290d",
+  "wslDistro": "Ubuntu-26.04",
+  "source": {
+    "owner": "USBGuard",
+    "repo": "usbguard",
+    "sha": "ba3e8f51eeaf9547a6af088d93133351bbf0290d"
+  },
+  "fork": {
+    "owner": "Rrr119",
+    "repo": "usbguard",
+    "cloneUrl": "https://github.com/Rrr119/usbguard.git"
+  },
+  "at": "2026-11-20T23:26:48.766Z"
+}

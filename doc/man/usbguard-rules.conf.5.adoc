@@ -171,6 +171,26 @@ See the https://www.usb.org/defined-class-codes[list of assigned classes, subcla
 Instead of the subclass and protocol number, you may write an asterisk character (`*`) to match all subclasses or protocols.
 Matching a specific class and a specific protocol is not allowed, i.e. if you use an asterisk as the subclass number, you have to use an asterisk for the protocol too.
 
+==== Device type shorthand
+The *usbguard* CLI and the *RuleCompiler* library API accept a `device-type` authoring attribute which is compiled to `with-interface` before the rule is sent to the daemon.
+It may be used with a named USB class or with a numeric interface type:
+
+....
+    allow device-type "mass-storage" serial "SN-123"
+    allow device-type one-of { keyboard mouse } serial "SN-456"
+....
+
+The first rule is compiled to:
+
+....
+    allow with-interface one-of { 08:*:* } serial "SN-123"
+....
+
+Common names include `audio`, `communications`, `hid`, `keyboard`, `mouse`, `printer`, `mass-storage`, `hub`, `smart-card`, `video`, `wireless`, `miscellaneous` and `vendor-specific`.
+The `device-type` attribute is an authoring shorthand only; it must not be written directly to a daemon rule file.
+Use the *usbguard-rule-parser* tool or *usbguard* *append-rule* to compile and validate it first.
+Compiled rules use only standard `with-interface` and `serial` attributes, so they remain compatible with existing daemons.
+
 [[conditions]]
 === Conditions
 Whether a rule that matches a device will be applied or not can be further restricted using rule conditions.

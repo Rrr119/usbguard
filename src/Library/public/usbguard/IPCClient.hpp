@@ -110,6 +110,20 @@ namespace usbguard
     uint32_t appendRule(const std::string& rule_spec, uint32_t parent_id, bool permanent) override;
 
     /**
+     * @brief Compiles a portable rule and appends it through the native IPC API.
+     *
+     * This accepts the same syntax as appendRule() plus device-type authoring
+     * attributes. The daemon receives only native rule attributes, so no
+     * daemon-side change is required.
+     *
+     * @param rule_spec Rule using native attributes or device-type aliases.
+     * @param parent_id Rule ID of the parent rule.
+     * @param permanent If true, persist the rule in the rule file.
+     * @return ID of the appended rule.
+     */
+    uint32_t appendCompiledRule(const std::string& rule_spec, uint32_t parent_id, bool permanent);
+
+    /**
      * @copydoc Interface::removeRule()
      */
     void removeRule(uint32_t id) override;

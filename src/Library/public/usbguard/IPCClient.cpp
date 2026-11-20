@@ -22,6 +22,7 @@
 
 #include "IPCClientPrivate.hpp"
 #include "Common/Utility.hpp"
+#include "usbguard/RuleCompiler.hpp"
 
 namespace usbguard
 {
@@ -65,6 +66,12 @@ namespace usbguard
   uint32_t IPCClient::appendRule(const std::string& rule_spec, uint32_t parent_id, bool permanent)
   {
     return d_pointer->appendRule(rule_spec, parent_id, permanent);
+  }
+
+  uint32_t IPCClient::appendCompiledRule(const std::string& rule_spec, uint32_t parent_id, bool permanent)
+  {
+    const Rule rule = RuleCompiler::compile(rule_spec);
+    return appendRule(rule.toString(), parent_id, permanent);
   }
 
   void IPCClient::removeRule(uint32_t id)

@@ -252,6 +252,7 @@ libusbguard_la_SOURCES=\
 	src/Library/ConfigFilePrivate.hpp \
 	src/Library/DeviceBase.cpp \
 	src/Library/DeviceBase.hpp \
+	src/Library/DeviceFingerprint.cpp \
 	src/Library/DeviceManagerBase.cpp \
 	src/Library/DeviceManagerBase.hpp \
 	src/Library/DeviceManagerPrivate.cpp \
@@ -281,8 +282,10 @@ libusbguard_la_SOURCES=\
 	src/Library/RuleEvaluatedCondition.hpp \
 	src/Library/RuleParser/Actions.hpp \
 	src/Library/RuleParser/Grammar.hpp \
+	src/Library/RuleCompiler.cpp \
 	src/Library/RulePrivate.cpp \
 	src/Library/RulePrivate.hpp \
+	src/Library/DeviceType.cpp \
 	src/Library/SysFSDevice.cpp \
 	src/Library/SysFSDevice.hpp \
 	src/Library/UEvent.cpp \
@@ -321,6 +324,7 @@ pkginclude_HEADERS=\
 	src/Library/public/usbguard/Audit.hpp \
 	src/Library/public/usbguard/ConfigFile.hpp \
 	src/Library/public/usbguard/Device.hpp \
+	src/Library/public/usbguard/DeviceFingerprint.hpp \
 	src/Library/public/usbguard/DeviceManager.hpp \
 	src/Library/public/usbguard/DeviceManagerHooks.hpp \
 	src/Library/public/usbguard/Exception.hpp \
@@ -333,9 +337,11 @@ pkginclude_HEADERS=\
 	src/Library/public/usbguard/Policy.hpp \
 	src/Library/public/usbguard/Predicates.hpp \
 	src/Library/public/usbguard/Rule.hpp \
+	src/Library/public/usbguard/RuleCompiler.hpp \
 	src/Library/public/usbguard/RuleCondition.hpp \
 	src/Library/public/usbguard/RuleSet.hpp \
 	src/Library/public/usbguard/Typedefs.hpp \
+	src/Library/public/usbguard/DeviceType.hpp \
 	src/Library/public/usbguard/USB.hpp \
 	src/Library/public/usbguard/USBGuard.hpp
 
